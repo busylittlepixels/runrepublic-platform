@@ -4,9 +4,9 @@
   <h3 align="center">Run Republic Platform</h3>
 
   
-# Platform Starter Kit Example
+# Run Republic Platform
 
-Run Republic Platform showcases the new Run Republic Platform API. It was built using the [T3 Stack](https://create.t3.gg/) with [Supabase](https://supabase.com/) as the Postgres Database and Image Storage host.
+Run Republic Platform is the base instance for the combined web, multitenant and fullstack application withing the Run Republic Group. It was built using the [T3 Stack](https://create.t3.gg/) with [Supabase](https://supabase.com/) as the Postgres Database and Image Storage host.
 
 ## How to use
 

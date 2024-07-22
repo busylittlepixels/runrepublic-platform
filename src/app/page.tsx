@@ -10,10 +10,10 @@ import { db } from "prisma/client";
 import React, { Suspense } from "react";
 
 export default async function Home() {
-  const experts = await db.user.findMany({
-    where: { status: "APPROVED" },
-    include: { selectedFilterOptions: { include: { filterOption: true } } },
-  });
+  // const experts = await db.user.findMany({
+  //   where: { status: "APPROVED" },
+  //   include: { selectedFilterOptions: { include: { filterOption: true } } },
+  // });
 
   return (
     <React.Fragment>
@@ -64,16 +64,7 @@ export default async function Home() {
         </div>
       </header>
       <main className="flex-1">
-        <Suspense>
-          <Results
-            experts={experts}
-            signedOut={
-              <SignedOut>
-                <SignupCard />
-              </SignedOut>
-            }
-          />
-        </Suspense>
+        WHAT AM I FUCKING DOING?
       </main>
     </React.Fragment>
   );
