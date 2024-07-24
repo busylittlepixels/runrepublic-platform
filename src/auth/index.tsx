@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/await-thenable */
 import { authConfig } from "./config.edge";
-import { signUp } from "@/__cal/auth";
 import { env } from "@/env";
-import { type Prisma, type User, type CalAccount } from "@prisma/client";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { type Prisma, type User } from "@prisma/client";
 import NextAuth from "next-auth";
 import type { Session } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
@@ -181,13 +182,7 @@ export const currentUser = cache(async () => {
     where: { id: sesh.user.id },
   });
 });
-export const currentUserWithCalAccount = cache(async () => {
-  const sesh = await auth();
-  if (!sesh?.user.id) throw new Error("somehting's wrong here");
-  return db.calAccount.findUnique({
-    where: { email: sesh?.user?.email?.replace("@", `+${env.NEXT_PUBLIC_CAL_OAUTH_CLIENT_ID}@`) },
-  });
-});
+
 
 export async function SignedIn(props: { children: (props: { user: Session["user"] }) => React.ReactNode }) {
   const sesh = await auth();
@@ -204,7 +199,7 @@ export async function CurrentUser(props: { children: (props: User) => React.Reac
 
   return !!user ? <>{props.children(user)}</> : null;
 }
-export async function CalAccount(props: { children: (props: CalAccount) => React.ReactNode }) {
-  const calAccount = await currentUserWithCalAccount();
-  return !!calAccount ? <>{props.children(calAccount)}</> : null;
+function signUp(args: { email: string; name: string; user: { id: string; }; }) {
+  throw new Error("Function not implemented.");
 }
+

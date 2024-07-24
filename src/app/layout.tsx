@@ -65,11 +65,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <body className={cn("antialiased", calFont.variable, interFont.variable)}>
         <Providers defaultTheme="system" enableSystem attribute="class">
           <div className="flex min-h-screen flex-col">
-            {/* <Banner
+            <Banner
               title="Build your own marketplace"
               description="Use our Platform Starter Kit to go live in 15 minutes."
               ctaLink="https://go.cal.com/starter-kit"
-            /> */}
+            />
             {/* <UseCalAtoms
               calAccessToken={currentUser().then((dbUser) => dbUser?.calAccessToken ?? null) ?? null}> */}
               {children}

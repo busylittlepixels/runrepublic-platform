@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 "use server";
 
 import { type LoginFormState } from "./login/_components/login";
-import { LoginSchema, SignupSchema, auth, signIn, unstable_update, FiltersSchema } from "@/auth";
+import { LoginSchema, SignupSchema, FiltersSchema, auth, signIn, unstable_update, } from "@/auth";
 import { type User } from "@prisma/client";
 import { type Prisma } from "@prisma/client";
 import { AuthError } from "next-auth";
@@ -12,6 +15,8 @@ import { z } from "zod";
 
 export async function signInWithCredentials(_prevState: LoginFormState, formData: FormData) {
   try {
+
+    console.log('fuckin fawm dayhaaa', formData);
     const credentials = LoginSchema.safeParse({
       email: formData.get("email"),
       password: formData.get("password"),
@@ -22,7 +27,7 @@ export async function signInWithCredentials(_prevState: LoginFormState, formData
         inputErrors: credentials.error.flatten().fieldErrors,
       };
     }
-
+    console.log('before signIn function')
     await signIn("credentials", formData);
     return { error: null };
   } catch (error) {
@@ -31,6 +36,8 @@ export async function signInWithCredentials(_prevState: LoginFormState, formData
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
+          console.log('formData not subbed1', formData.get('email'));
+          console.log('formData not subbed1', formData.get('password'));
           return { error: "Invalid credentials." };
         default:
           console.error("Uncaught error signing in (AuthError): ", error);
@@ -133,6 +140,7 @@ export async function signUpWithCredentials(_prevState: { error?: string | null 
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
+          console.log('formData not subbed', formData)
           return { error: "Invalid credentials." };
         default:
           console.error("Uncaught error signing in (AuthError): ", error);

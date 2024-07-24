@@ -1,11 +1,11 @@
-import { Results } from "./_components/home/results";
+// import { Results } from "./_components/home/results";
 import SignupCard from "./_components/home/signup-card";
 import { ButtonSubmit } from "./_components/submit-button";
 import { Logo } from "./_components/universal/logo";
 import { SignedIn, SignedOut, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { LogIn } from "lucide-react";
-import { Link } from "next-view-transitions";
+import Link from "next/link";
 import { db } from "prisma/client";
 import React, { Suspense } from "react";
 
@@ -41,11 +41,6 @@ export default async function Home() {
                     <LogIn className="ml-1 size-4" />
                   </Button>
                 </Link>
-                <Link href={"/categories"}>
-                  <Button className="w-full">
-                    Keerrrts
-                  </Button>
-                </Link>
               </div>
             )}
           </SignedIn>
@@ -64,7 +59,11 @@ export default async function Home() {
         </div>
       </header>
       <main className="flex-1">
-        WHAT AM I FUCKING DOING?
+        <Suspense>
+          <SignedOut>
+            <SignupCard />
+          </SignedOut>
+        </Suspense>
       </main>
     </React.Fragment>
   );
